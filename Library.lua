@@ -1610,6 +1610,8 @@ do
         if type(Info.Text) == 'string' then
             Library:CreateLabel({
                 Size = UDim2.new(1, 0, 0, 15);
+                AbsolutePosition = Vector2.new(0.5, 0.5);
+                Position = UDim2.new(0, 0.5, 0, 0.5);
                 TextSize = 14;
                 Text = Info.Text;
                 TextWrapped = false,
@@ -1640,7 +1642,7 @@ do
             BorderColor3 = 'OutlineColor';
         });
 
-        Groupbox:AddBlank(5);
+        Groupbox:AddBlank(10);
         Groupbox:Resize();
     end
 
