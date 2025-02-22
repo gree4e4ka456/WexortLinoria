@@ -1590,7 +1590,7 @@ do
         return Button;
     end;
 
-    function Funcs:AddDivider()
+    function Funcs:AddDivider(Text: string?)
         local Groupbox = self;
         local Container = self.Container
 
@@ -1606,6 +1606,18 @@ do
             ZIndex = 5;
             Parent = Container;
         });
+
+        if Text then
+            local TextLabel = Library:CreateLabel({
+                Size = UDim2.new(1, -4, 0, 15);
+                TextSize = 14;
+                Text = Text;
+                TextWrapped = false,
+                TextXAlignment = Enum.TextXAlignment.Center;
+                ZIndex = 6;
+                Parent = Container;
+            });    
+        end
 
         local DividerInner = Library:Create('Frame', {
             BackgroundColor3 = Library.MainColor;
