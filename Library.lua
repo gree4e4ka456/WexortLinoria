@@ -1590,7 +1590,7 @@ do
         return Button;
     end;
 
-    function Funcs:AddDivider(Text: string?)
+    function Funcs:AddDivider(Info)
         local Groupbox = self;
         local Container = self.Container
 
@@ -1598,25 +1598,28 @@ do
             Type = 'Divider',
         }
 
-        Groupbox:AddBlank(2);
+        Groupbox:AddBlank(5);
         local DividerOuter = Library:Create('Frame', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
-            Size = UDim2.new(1, -4, 0, ((Text) and 15 or 5));
+            Size = UDim2.new(1, -4, 0, 5);
             ZIndex = 5;
             Parent = Container;
         });
 
-        if Text then
+        if type(Info.Text) == 'string' then
             Library:CreateLabel({
-                Size = UDim2.new(1, 0, 1, 0);
+                Size = UDim2.new(1, 0, 0, 15);
                 TextSize = 14;
-                Text = Text;
+                Text = Info.Text;
                 TextWrapped = false,
                 TextXAlignment = Enum.TextXAlignment.Center;
                 ZIndex = 7;
                 Parent = DividerOuter;
             });
+        end
+        if type(Info.Tooltip) == 'string' then
+            Library:AddToolTip(Info.Tooltip, DividerOuter)
         end
 
         local DividerInner = Library:Create('Frame', {
@@ -1637,7 +1640,7 @@ do
             BorderColor3 = 'OutlineColor';
         });
 
-        Groupbox:AddBlank(9);
+        Groupbox:AddBlank(5);
         Groupbox:Resize();
     end
 
