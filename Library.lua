@@ -1608,10 +1608,9 @@ do
         });
 
         if type(Info.Text) == 'string' then
-            Library:CreateLabel({
+            local TextLabel = Library:CreateLabel({
                 Size = UDim2.new(1, 0, 0, 15);
-                AbsolutePosition = Vector2.new(0.5, 0.5);
-                Position = UDim2.new(0, 0.5, 0, 0.5);
+                Position = UDim2.new(0, 0, 0, -0.75);
                 TextSize = 14;
                 Text = Info.Text;
                 TextWrapped = false,
@@ -1619,9 +1618,10 @@ do
                 ZIndex = 7;
                 Parent = DividerOuter;
             });
-        end
-        if type(Info.Tooltip) == 'string' then
-            Library:AddToolTip(Info.Tooltip, DividerOuter)
+
+            if type(Info.Tooltip) == 'string' then
+                Library:AddToolTip(Info.Tooltip, TextLabel)
+            end
         end
 
         local DividerInner = Library:Create('Frame', {
