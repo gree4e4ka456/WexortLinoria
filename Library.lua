@@ -1602,21 +1602,21 @@ do
         local DividerOuter = Library:Create('Frame', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
-            Size = UDim2.new(1, -4, 0, 5);
+            Size = UDim2.new(1, -4, 0, ((Text) and 15 or 5));
             ZIndex = 5;
             Parent = Container;
         });
 
         if Text then
-            local TextLabel = Library:CreateLabel({
-                Size = UDim2.new(1, -4, 0, 15);
+            Library:CreateLabel({
+                Size = UDim2.new(1, 0, 1, 0);
                 TextSize = 14;
                 Text = Text;
                 TextWrapped = false,
                 TextXAlignment = Enum.TextXAlignment.Center;
-                ZIndex = 6;
-                Parent = Container;
-            });    
+                ZIndex = 7;
+                Parent = DividerOuter;
+            });
         end
 
         local DividerInner = Library:Create('Frame', {
