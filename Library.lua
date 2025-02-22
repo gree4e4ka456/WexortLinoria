@@ -1610,7 +1610,7 @@ do
         if type(Info.Text) == 'string' then
             local TextLabel = Library:CreateLabel({
                 Size = UDim2.new(1, 0, 0, 15);
-                Position = UDim2.new(0, 0, -0.75, 0);
+                Position = UDim2.new(0, 0, -10, 0);
                 TextSize = 14;
                 Text = Info.Text;
                 TextWrapped = false,
