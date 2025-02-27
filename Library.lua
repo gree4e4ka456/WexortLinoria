@@ -2120,8 +2120,9 @@ do
         SliderInner.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+                    local CurrentX = Mouse.X;
                     local OldValue = Slider.Value;
-                    local SizeScale = math.clamp((Input.Position.X - SliderInner.AbsolutePosition.X) / SliderInner.AbsoluteSize.X, 0, 1)
+                    local SizeScale = math.clamp((CurrentX - SliderInner.AbsolutePosition.X) / SliderInner.AbsoluteSize.X, 0, 1)
                     local NewValue = Info.Min + ((Info.Max - Info.Min) * SizeScale);
                     Slider.Value = NewValue;
                     Slider:Display();
