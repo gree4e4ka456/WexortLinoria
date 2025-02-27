@@ -301,16 +301,11 @@ function Library:UpdateDependencyBoxes()
     end;
 end;
 function Library:Round(Number, Factor)
-    if Factor == 0 then
-        return Number
-    end
-
-    local Result = math.floor((Number + (math.sign(Number) * (Factor / 2))) / Factor) * Factor
-    if Result < 0 and Number % Factor ~= 0 then 
+    local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
+    if Result < 0 then 
         Result = Result + Factor 
     end
-    
-    return Result
+	return Result
 end
 
 function Library:GetTextBounds(Text, Font, Size, Resolution)
@@ -2127,13 +2122,8 @@ do
                     local OldValue = Slider.Value;
                     local SizeScale = math.clamp((CurrentX - SliderInner.AbsolutePosition.X) / SliderInner.AbsoluteSize.X, 0, 1)
                     local NewValue = Info.Min + ((Info.Max - Info.Min) * SizeScale);
-                    Slider.Value = NewValue;
-                    Slider:Display();
 
-                    if NewValue ~= OldValue then
-                        Library:SafeCallback(Slider.Callback, Slider.Value);
-                        Library:SafeCallback(Slider.Changed, Slider.Value);
-                    end;
+                    Slider:SetValue(NewValue);
 
                     RenderStepped:Wait();
                 end;
