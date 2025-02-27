@@ -300,13 +300,12 @@ function Library:UpdateDependencyBoxes()
         Depbox:Update();
     end;
 end;
-
-function Library:MapValue(Value, MinA, MaxA, MinB, MaxB)
-    return (1 - ((Value - MinA) / (MaxA - MinA))) * MinB + ((Value - MinA) / (MaxA - MinA)) * MaxB;
-end;
 function Library:Round(Number, Factor)
-	local Result = math.floor(Number/Factor + (math.sign(Number) * 0.5)) * Factor
-	if Result < 0 then Result = Result + Factor end
+    print(Number, Factor)
+	local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
+	if Result < 0 then 
+        Result = Result + Factor 
+    end
 	return Result
 end
 
