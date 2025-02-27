@@ -2093,7 +2093,7 @@ do
                 DisplayLabel.Text = string.format('%s/%s', Slider.Value .. Suffix, Slider.Max .. Suffix);
             end
 
-            local X = (Info.Value - Info.Min) / (Info.Max - Info.Min)
+            local X = (Slider.Value - Info.Min) / (Info.Max - Info.Min)
             Fill.Size = UDim2.fromScale(X, 1);
         end;
 
