@@ -301,12 +301,16 @@ function Library:UpdateDependencyBoxes()
     end;
 end;
 function Library:Round(Number, Factor)
-    print(Number, Factor)
-	local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
-	if Result < 0 then 
+    if Factor == 0 then
+        return Number
+    end
+
+    local Result = math.floor((Number + (math.sign(Number) * (Factor / 2))) / Factor) * Factor
+    if Result < 0 and Number % Factor ~= 0 then 
         Result = Result + Factor 
     end
-	return Result
+    
+    return Result
 end
 
 function Library:GetTextBounds(Text, Font, Size, Resolution)
