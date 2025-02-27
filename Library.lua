@@ -2109,8 +2109,8 @@ do
                 return;
             end;
 
-            Num = math.clamp(Library:Round(Num, Info.Rounding), Info.Min, Info.Max)
-            Slider.Value = Num;
+            local NewValue = math.clamp(Library:Round(Num, Slider.Rounding), Slider.Min, Slider.Max)
+            Slider.Value = NewValue;
             Slider:Display();
 
             Library:SafeCallback(Slider.Callback, Slider.Value);
