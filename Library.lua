@@ -2119,18 +2119,13 @@ do
 
         SliderInner.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
-                local mPos = Mouse.X;
-                local gPos = Fill.Size.X.Offset;
-                local Diff = mPos - (Fill.AbsolutePosition.X + gPos);
-
                 while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
-                    local nMPos = Mouse.X;
-
                     local OldValue = Slider.Value;
                     local SizeScale = math.clamp((Input.Position.X - Fill.AbsolutePosition.X) / Fill.AbsoluteSize.X, 0, 1)
+                    print("SizeScale: " .. SizeScale)
                     local NewValue = Info.Min + ((Info.Max - Info.Min) * SizeScale);
+                    print("NewValue: " .. SizeScale)
                     Slider.Value = NewValue;
-
                     Slider:Display();
 
                     if NewValue ~= OldValue then
