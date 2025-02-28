@@ -2397,6 +2397,11 @@ do
                 });
 
                 if Info.Tooltips and Info.Tooltips[Value] then
+                    pcall(function()
+                        print(Info.Tooltips == nil)
+                        print(tostring(Info.Tooltips[Value]))
+                    end)
+                    print("Added")
                     Library:AddTooltip(Info.Tooltips[Value], ButtonLabel)
                 end
 
