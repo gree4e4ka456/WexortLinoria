@@ -2397,7 +2397,7 @@ do
                 });
 
                 if Info.Tooltips and Info.Tooltips[Value] then
-                    Library:AddTooltip(Info.Tooltips[Value], Button)
+                    Library:AddTooltip(Info.Tooltips[Value], ButtonLabel)
                 end
 
                 Library:OnHighlight(Button, Button,
