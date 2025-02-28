@@ -2397,7 +2397,11 @@ do
                     Parent = Button;
                 });
 
+                warn(not Dropdown.SpecialType)
+                warn(typeof(Dropdown.Tooltips) == 'table')
+                warn(Dropdown.Tooltips[Value])
                 if not Dropdown.SpecialType and typeof(Dropdown.Tooltips) == 'table' and Dropdown.Tooltips[Value] then
+                    warn("added tooltip to " .. Value)
                     Library:AddTooltip(Dropdown.Tooltips[Value], ButtonLabel)
                 end
 
