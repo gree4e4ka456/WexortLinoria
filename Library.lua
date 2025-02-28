@@ -2386,7 +2386,7 @@ do
                 });
 
                 local ButtonLabel = Library:CreateLabel({
-                    Active = false;
+                    Active = true;
                     Size = UDim2.new(1, -6, 1, 0);
                     Position = UDim2.new(0, 6, 0, 0);
                     TextSize = 14;
