@@ -2178,6 +2178,10 @@ do
                 Parent = Container;
             });
 
+            if type(Info.Tooltip) == 'string' then
+                Library:AddTooltip(Info.Tooltip, DropdownLabel)
+            end
+
             Groupbox:AddBlank(3);
         end
 
@@ -2247,10 +2251,6 @@ do
             { BorderColor3 = 'AccentColor' },
             { BorderColor3 = 'Black' }
         );
-
-        if type(Info.Tooltip) == 'string' then
-            Library:AddTooltip(Info.Tooltip, DropdownOuter)
-        end
 
         local MAX_DROPDOWN_ITEMS = 8;
 
