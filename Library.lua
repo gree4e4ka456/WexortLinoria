@@ -2159,7 +2159,7 @@ do
 
         local Dropdown = {
             Values = Info.Values;
-            Tooltips = Info.Tooltips or {}; -- make sure there's no SpecialType
+            Tooltips = Info.Tooltips; -- make sure there's no SpecialType
             Value = Info.Multi and {};
             Multi = Info.Multi;
             Type = 'Dropdown';
@@ -2397,7 +2397,7 @@ do
                     Parent = Button;
                 });
 
-                if not Dropdown.SpecialType and Dropdown.Tooltips[Value] then
+                if not Dropdown.SpecialType and typeof(Dropdown.Tooltips) == 'table' and Dropdown.Tooltips[Value] then
                     Library:AddTooltip(Dropdown.Tooltips[Value], ButtonLabel)
                 end
 
