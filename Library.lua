@@ -2354,6 +2354,15 @@ do
             end;
         end;
 
+        print("Values:")
+        for i, v in pairs(Dropdown.Values) do
+            print(i, v)
+        end
+        print("Tooltips:")
+        for i, t in pairs(Dropdown.Tooltips) do
+            print(i, t)
+        end
+
         function Dropdown:BuildDropdownList()
             local Values = Dropdown.Values;
             local Buttons = {};
@@ -2397,11 +2406,7 @@ do
                     Parent = Button;
                 });
 
-                warn(not Dropdown.SpecialType)
-                warn(typeof(Dropdown.Tooltips) == 'table')
-                warn(Dropdown.Tooltips[Value])
                 if not Dropdown.SpecialType and typeof(Dropdown.Tooltips) == 'table' and Dropdown.Tooltips[Value] then
-                    warn("added tooltip to " .. Value)
                     Library:AddTooltip(Dropdown.Tooltips[Value], ButtonLabel)
                 end
 
