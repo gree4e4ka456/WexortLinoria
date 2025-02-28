@@ -2354,13 +2354,15 @@ do
             end;
         end;
 
-        print("Values:")
-        for i, v in pairs(Dropdown.Values) do
-            print(i, v)
-        end
-        print("Tooltips:")
-        for i, t in pairs(Dropdown.Tooltips) do
-            print(i, t)
+        if typeof(Dropdown.Tooltips) == "table" then
+            print("Values:")
+            for i, v in pairs(Dropdown.Values) do
+                print(i, v)
+            end
+            print("Tooltips:")
+            for i, t in pairs(Dropdown.Tooltips) do
+                print(i, t)
+            end
         end
 
         function Dropdown:BuildDropdownList()
