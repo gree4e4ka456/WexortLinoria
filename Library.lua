@@ -189,7 +189,7 @@ function Library:MakeDraggable(Instance, Cutoff)
     end)
 end;
 
-function Library:AddToolTip(InfoStr, HoverInstance)
+function Library:AddTooltip(InfoStr, HoverInstance)
     local X, Y = Library:GetTextBounds(InfoStr, Library.Font, 14);
     local Tooltip = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor,
@@ -1549,7 +1549,7 @@ do
 
         function Button:AddTooltip(tooltip)
             if type(tooltip) == 'string' then
-                Library:AddToolTip(tooltip, self.Outer)
+                Library:AddTooltip(tooltip, self.Outer)
             end
             return self
         end
@@ -1570,7 +1570,7 @@ do
 
             function SubButton:AddTooltip(tooltip)
                 if type(tooltip) == 'string' then
-                    Library:AddToolTip(tooltip, self.Outer)
+                    Library:AddTooltip(tooltip, self.Outer)
                 end
                 return SubButton
             end
@@ -1623,7 +1623,7 @@ do
             });
 
             if type(Info.Tooltip) == 'string' then
-                Library:AddToolTip(Info.Tooltip, TextLabel)
+                Library:AddTooltip(Info.Tooltip, TextLabel)
             end
         end
 
@@ -1702,7 +1702,7 @@ do
         );
 
         if type(Info.Tooltip) == 'string' then
-            Library:AddToolTip(Info.Tooltip, TextBoxOuter)
+            Library:AddTooltip(Info.Tooltip, TextBoxOuter)
         end
 
         Library:Create('UIGradient', {
@@ -1910,7 +1910,7 @@ do
         end;
 
         if type(Info.Tooltip) == 'string' then
-            Library:AddToolTip(Info.Tooltip, ToggleRegion)
+            Library:AddTooltip(Info.Tooltip, ToggleRegion)
         end
 
         function Toggle:Display()
@@ -2072,7 +2072,7 @@ do
         );
 
         if type(Info.Tooltip) == 'string' then
-            Library:AddToolTip(Info.Tooltip, SliderOuter)
+            Library:AddTooltip(Info.Tooltip, SliderOuter)
         end
 
         function Slider:UpdateColors()
@@ -2254,7 +2254,7 @@ do
         );
 
         if type(Info.Tooltip) == 'string' then
-            Library:AddToolTip(Info.Tooltip, DropdownOuter)
+            Library:AddTooltip(Info.Tooltip, DropdownOuter)
         end
 
         local MAX_DROPDOWN_ITEMS = 8;
