@@ -2396,17 +2396,18 @@ do
                     Parent = Button;
                 });
 
-                if  Info.Tooltips then
-                pcall(function()
-                    print("Values:")
-                    for i, v in pairs(Values) do
-                        print(i, v)
-                    end
-                    print("Tooltips:")
-                    for i, v in pairs(Info.Tooltips) do
-                        print(i, v)
-                    end end
-                end)
+                if Info.Tooltips then
+                    pcall(function()
+                        print("Values:")
+                        for i, v in pairs(Values) do
+                            print(i, v)
+                        end
+                        print("Tooltips:")
+                        for i, v in pairs(Info.Tooltips) do
+                            print(i, v)
+                        end
+                    end)
+                end
                 if not Dropdown.SpecialType and typeof(Info.Tooltips) == 'table' and Info.Tooltips[Value] then
                     Library:AddTooltip(Info.Tooltips[Value], ButtonLabel)
                 end
