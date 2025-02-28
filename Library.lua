@@ -189,7 +189,7 @@ function Library:MakeDraggable(Instance, Cutoff)
     end)
 end;
 
-function Library:AddTooltip(InfoStr, HoverInstance)
+function Library:AddTooltip(InfoStr, HoverInstance, Unlimited)
     local X, Y = Library:GetTextBounds(InfoStr, Library.Font, 14);
     local Tooltip = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor,
@@ -226,6 +226,10 @@ function Library:AddTooltip(InfoStr, HoverInstance)
     local IsHovering = false
 
     HoverInstance.MouseEnter:Connect(function()
+        if not Unlimited and Library:MouseIsOverOpenedFrame() then
+            return
+        end
+
         IsHovering = true
 
         Tooltip.Position = UDim2.fromOffset(Mouse.X + 15, Mouse.Y + 12)
@@ -2393,7 +2397,7 @@ do
                 });
 
                 if Info.Tooltips and Info.Tooltips[Value] then
-                    Library:AddTooltip(Info.Tooltips[Value], ButtonLabel)
+                    Library:AddTooltip(Info.Tooltips[Value], ButtonLabel, true)
                 end
 
                 Library:OnHighlight(Button, Button,
