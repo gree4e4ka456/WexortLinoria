@@ -2159,7 +2159,6 @@ do
 
         local Dropdown = {
             Values = Info.Values;
-            Tooltips = Info.Tooltips; -- make sure there's no SpecialType
             Value = Info.Multi and {};
             Multi = Info.Multi;
             Type = 'Dropdown';
@@ -2354,17 +2353,6 @@ do
             end;
         end;
 
-        if typeof(Dropdown.Tooltips) == "table" then
-            print("Values:")
-            for i, v in pairs(Dropdown.Values) do
-                print(i, v)
-            end
-            print("Tooltips:")
-            for i, t in pairs(Dropdown.Tooltips) do
-                print(i, t)
-            end
-        end
-
         function Dropdown:BuildDropdownList()
             local Values = Dropdown.Values;
             local Buttons = {};
@@ -2408,8 +2396,18 @@ do
                     Parent = Button;
                 });
 
-                if not Dropdown.SpecialType and typeof(Dropdown.Tooltips) == 'table' and Dropdown.Tooltips[Value] then
-                    Library:AddTooltip(Dropdown.Tooltips[Value], ButtonLabel)
+                pcall(function()
+                    print("Values:")
+                    for i, v in pairs(Values) do
+                        print(i, v)
+                    end
+                    print("Tooltips:")
+                    for i, v in pairs(Info.Tooltips) do
+                        print(i, v)
+                    end
+                end)
+                if not Dropdown.SpecialType and typeof(Info.Tooltips) == 'table' and Info.Tooltips[Value] then
+                    Library:AddTooltip(Info.Tooltips[Value], ButtonLabel)
                 end
 
                 Library:OnHighlight(Button, Button,
