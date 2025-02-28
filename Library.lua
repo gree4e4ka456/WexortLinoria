@@ -2159,6 +2159,7 @@ do
 
         local Dropdown = {
             Values = Info.Values;
+            Tooltips = Info.Tooltips or {}; -- make sure there's no SpecialType
             Value = Info.Multi and {};
             Multi = Info.Multi;
             Type = 'Dropdown';
@@ -2395,6 +2396,10 @@ do
                     ZIndex = 25;
                     Parent = Button;
                 });
+
+                if not Dropdown.SpecialType and Dropdown.Tooltips[Value] then
+                    Library:AddTooltip(Dropdown.Tooltips[Value], ButtonLabel)
+                end
 
                 Library:OnHighlight(Button, Button,
                     { BorderColor3 = 'AccentColor', ZIndex = 24 },
