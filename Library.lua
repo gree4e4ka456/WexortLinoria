@@ -19,7 +19,6 @@ ScreenGui.Parent = CoreGui;
 
 local Toggles = {};
 local Options = {};
-local ActiveTooltip = nil;
 
 getgenv().Toggles = Toggles;
 getgenv().Options = Options;
@@ -40,6 +39,7 @@ local Library = {
     Black = Color3.new(0, 0, 0);
     Font = Enum.Font.Code,
 
+    ActiveTooltip = nil;
     OpenedFrames = {};
     DependencyBoxes = {};
 
@@ -233,12 +233,12 @@ function Library:AddTooltip(InfoStr, HoverInstance, Unlimited)
 
         IsHovering = true
 
-        ActiveTooltip = Tooltip
+        Library.ActiveTooltip = Tooltip
         Tooltip.Position = UDim2.fromOffset(Mouse.X + 15, Mouse.Y + 12)
         Tooltip.Visible = true
 
         while RunService.Heartbeat:Wait() do
-            if not IsHovering or not Library:IsVisible() or ActiveTooltip ~= Tooltip then
+            if not IsHovering or not Library:IsVisible() or Library.ActiveTooltip ~= Tooltip then
                 Tooltip.Visible = false
                 break 
             end
@@ -3523,6 +3523,7 @@ function Library:CreateWindow(...)
             -- A bit scuffed, but if we're going from not toggled -> toggled we want to show the frame immediately so that the fade is visible.
             Outer.Visible = true;
 
+            --[[
             task.spawn(function()
                 -- TODO: add cursor fade?
                 local State = InputService.MouseIconEnabled;
@@ -3561,6 +3562,7 @@ function Library:CreateWindow(...)
                 Cursor:Remove();
                 CursorOutline:Remove();
             end);
+            ]]--
         end;
 
         for _, Desc in next, Outer:GetDescendants() do
