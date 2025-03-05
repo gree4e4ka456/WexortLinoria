@@ -19,6 +19,7 @@ ScreenGui.Parent = CoreGui;
 
 local Toggles = {};
 local Options = {};
+local ActiveTooltip = nil;
 
 getgenv().Toggles = Toggles;
 getgenv().Options = Options;
@@ -232,18 +233,22 @@ function Library:AddTooltip(InfoStr, HoverInstance, Unlimited)
 
         IsHovering = true
 
+        ActiveTooltip = Tooltip
         Tooltip.Position = UDim2.fromOffset(Mouse.X + 15, Mouse.Y + 12)
         Tooltip.Visible = true
 
-        while IsHovering do
-            RunService.Heartbeat:Wait()
+        while RunService.Heartbeat:Wait() do
+            if not IsHovering or not Library:IsVisible() or ActiveTooltip ~= Tooltip then
+                Tooltip.Visible = false
+                break 
+            end
+
             Tooltip.Position = UDim2.fromOffset(Mouse.X + 15, Mouse.Y + 12)
         end
     end)
 
     HoverInstance.MouseLeave:Connect(function()
         IsHovering = false
-        Tooltip.Visible = false
     end)
 end
 
@@ -3597,6 +3602,9 @@ function Library:CreateWindow(...)
         Outer.Visible = Toggled;
 
         Fading = false;
+    end
+    function Library:IsVisible()
+        return Outer.Visible
     end
 
     Library:GiveSignal(InputService.InputBegan:Connect(function(Input, Processed)
